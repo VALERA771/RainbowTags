@@ -8,27 +8,49 @@ This plugin makes use of [EXILED 8](https://github.com/Exiled-Team/EXILED/releas
 
 ## Configuration
 
+Default config
 ```yaml
 rainbow_tags:
   is_enabled: true
   debug: false
-  color_interval: 0.5
-  sequences:
-    - red
-    - orange
-    - yellow
-    - green
-    - blue_green
-    - magenta
-    - silver
-    - crimson
-  ranks_with_rtags:
-    - owner
-    - moderator
-    - admin
+  # Tags Configuration
+  group_sequences:
+  - group: 'owner'
+    change_time: 0.5
+    colors:
+    - 'red'
+    - 'orange'
+    - 'yellow'
+    - 'green'
+    - 'blue_green'
+    - 'magenta'
+    - 'silver'
+    - 'crimson'
+  - group: 'moderator'
+    change_time: 0.5
+    colors:
+    - 'red'
+    - 'orange'
+    - 'yellow'
+    - 'green'
+    - 'blue_green'
+    - 'magenta'
+    - 'silver'
+    - 'crimson'
+  - group: 'admin'
+    change_time: 0.5
+    colors:
+    - 'red'
+    - 'orange'
+    - 'yellow'
+    - 'green'
+    - 'blue_green'
+    - 'magenta'
+    - 'silver'
+    - 'crimson'
 ```
 
-**Valid Colours**:
+**Valid Colors**:
 * pink
 * red
 * brown
@@ -56,3 +78,5 @@ rainbow_tags:
 #### FAQ
 
 If you get issues about `TAG FAIL`, you've either used a invalid / prohibited color. If you're certain you're not using a prohibited color, remove the color and restart.
+change_time minimum time is 0.5.
+If you encounter any issues - feel free to ping me at [plugin-bug-reports](https://discord.com/channels/656673194693885975/817074252724699136) on EXILED server or DM me (valera771).

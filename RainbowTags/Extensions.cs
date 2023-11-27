@@ -2,21 +2,22 @@
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace RainbowTags;
-
-public static class Extensions
+namespace RainbowTags
 {
-    public static void RemoveComponent(this Player player, Component component)
+    public static class Extensions
     {
-        var componentInstance = player.GameObject.GetComponent(component.GetType());
-        if (componentInstance != null)
-            Object.Destroy(componentInstance);
-    }
+        public static void RemoveComponent(this Player player, Component component)
+        {
+            var componentInstance = player.GameObject.GetComponent(component.GetType());
+            if (componentInstance != null)
+                Object.Destroy(componentInstance);
+        }
     
-    public static void RemoveComponent<T>(this Player player) where T : Component
-    {
-        var component = player.GameObject.GetComponent<T>();
-        if (component != null)
-            Object.Destroy(component);
+        public static void RemoveComponent<T>(this Player player) where T : Component
+        {
+            var component = player.GameObject.GetComponent<T>();
+            if (component != null)
+                Object.Destroy(component);
+        }
     }
 }

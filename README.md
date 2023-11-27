@@ -1,4 +1,9 @@
-![Total Downloads](https://img.shields.io/github/downloads/NotIntense/RainbowTags/total)
+![Github All Downloads](https://img.shields.io/github/downloads/VALERA771/RainbowTags/total.svg?style=for-the-badge)
+<a href="https://github.com/VALERA771/RainbowTags/releases">
+  <img src="https://img.shields.io/github/release/VALERA771/RainbowTags/all.svg?style=for-the-badge" alt="GitHub Releases">
+</a>
+
+![Build CI](https://github.com/VALERA771/RainbowTags/actions/workflows/build.yml/badge.svg?branch=master)
 
 
 # RainbowTags

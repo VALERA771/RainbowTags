@@ -3,6 +3,7 @@ on:
   push:
     branches:
     - dev
+    - VALERA771-patch-1
   pull_request:
     branches:
     - master

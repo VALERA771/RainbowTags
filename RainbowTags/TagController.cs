@@ -4,77 +4,69 @@ using Exiled.API.Features;
 using MEC;
 using UnityEngine;
 
-namespace RainbowTags;
-
-public class TagController : MonoBehaviour
+namespace RainbowTags
 {
-    private Player _player;
-    private int _position;
-    private float _interval;
-    private int _intervalInFrames;
-    private string[] _colors;
-    private CoroutineHandle _coroutineHandle;
+    public class TagController : MonoBehaviour
+    {
+        private Player _player;
+        private int _position;
+        private int _intervalInFrames;
+        private CoroutineHandle _coroutineHandle;
     
-    public string[] Colors
-    {
-        get => _colors ?? Array.Empty<string>();
-        set
+        public string[] Colors => Badge.Colors;
+
+        public float Interval => Badge.ChangeTime;
+        
+        public RainbowBadge Badge { get; set; }
+        
+        private void Awake()
         {
-            _colors = value ?? Array.Empty<string>();
-            _position = 0;
+            _player = Player.Get(gameObject);
+            _intervalInFrames = Mathf.CeilToInt(Badge.ChangeTime) * 50;
         }
-    }
-    public float Interval
-    {
-        get => _interval;
-        set
-        {
-            _interval = value;
-            _intervalInFrames = Mathf.CeilToInt(value) * 50;
+        
+        private void Start()
+        { 
+            _coroutineHandle = Timing.RunCoroutine(UpdateColor().CancelWith(_player.GameObject));
         }
-    }
-    private void Awake()
-    {
-        _player = Player.Get(gameObject);
-    }
-    private void Start()
-    { 
-        _coroutineHandle = Timing.RunCoroutine(UpdateColor().CancelWith(_player.GameObject));
-    }
-    private void OnDestroy()
-    {
-        Timing.KillCoroutines(_coroutineHandle);
-    }
-    private string RollNext()
-    {
-        var num = _position + 1;
-        _position = num;
         
-        if (num >= _colors.Length)
-            _position = 0;
-        
-        if (_colors.Length == 0)
-            return string.Empty;
-        
-        return _colors[_position];
-    }
-    private IEnumerator<float> UpdateColor()
-    {
-        for (; ; )
+        private void OnDestroy()
         {
-            int num;
-            for (int z = 0; z < _intervalInFrames; z = num + 1)
+            Timing.KillCoroutines(_coroutineHandle);
+        }
+        
+        private string RollNext()
+        {
+            var num = _position + 1;
+            _position = num;
+        
+            if (num >= Colors.Length)
+                _position = 0;
+        
+            if (Colors.Length == 0)
+                return string.Empty;
+        
+            return Colors[_position];
+        }
+        
+        private IEnumerator<float> UpdateColor()
+        {
+            for (; ; )
             {
-                yield return 0f;
-                num = z;
+                int num;
+                for (int z = 0; z < _intervalInFrames; z = num + 1)
+                {
+                    yield return 0f;
+                    num = z;
+                }
+                string text = RollNext();
+                if (string.IsNullOrEmpty(text))
+                {
+                    break;
+                }
+                _player.RankColor = text;
             }
-            string text = RollNext();
-            if (string.IsNullOrEmpty(text))
-            {
-                break;
-            }
-            _player.RankColor = text;
+            Destroy(this);
         }
-        Destroy(this);
     }
 }

@@ -2,38 +2,21 @@
 using System.ComponentModel;
 using Exiled.API.Interfaces;
 
-namespace RainbowTags;
-
-public class Config : IConfig
+namespace RainbowTags
 {
-    public bool IsEnabled { get; set; } = true;
-    public bool Debug { get; set; } = false;
-    public bool GroupSpecificSequences { get; set; } = false;
+    public class Config : IConfig
+    {
+        public bool IsEnabled { get; set; } = true;
+        public bool Debug { get; set; } = false;
 
-    [Description("Tags Configuration")]
-    public float ColorInterval { get; set; } = 0.5f;
-    public List<string> RanksWithRTags { get; set; } = new()
-    {
-        "owner",
-        "moderator",
-        "admin"
-    };
-    public string[] Sequences { get; set; } = new[]
-    {
-        "red",
-        "orange",
-        "yellow",
-        "green",
-        "blue_green",
-        "magenta",
-        "silver",
-        "crimson"
-    };
+        [Description("Tags Configuration")]
+        public float ColorInterval { get; set; } = 0.5f;
 
-    public Dictionary<string, List<string>> GroupSequences { get; set; } = new Dictionary<string, List<string>>
-    {
-    { "owner", new List<string>() { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" } },
-    { "moderator", new List<string>() { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" } },
-    { "admin", new List<string>() { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" } }
-    };
+        public List<RainbowBadge> GroupSequences { get; set; } = new()
+        {
+            new("owner", 0.5f, new[] { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" }),
+            new("moderator", 0.5f, new[] { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" }),
+            new("admin", 0.5f, new[] { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" }),
+        };
+    }
 }

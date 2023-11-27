@@ -37,7 +37,7 @@ jobs:
 
       - name: Build
         run: | 
-          msbuild ScriptedEvents\ScriptedEvents.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
+          msbuild RainbowTags\RainbowTags.csproj -t:rebuild -property:Configuration=Release -property:ReferencePath="${{ env.REFERENCES_PATH }}"
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3

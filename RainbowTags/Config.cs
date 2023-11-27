@@ -10,8 +10,6 @@ namespace RainbowTags
         public bool Debug { get; set; } = false;
 
         [Description("Tags Configuration")]
-        public float ColorInterval { get; set; } = 0.5f;
-
         public List<RainbowBadge> GroupSequences { get; set; } = new()
         {
             new("owner", 0.5f, new[] { "red", "orange", "yellow", "green", "blue_green", "magenta", "silver", "crimson" }),

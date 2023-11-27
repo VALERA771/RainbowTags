@@ -13,7 +13,7 @@ namespace RainbowTags
         public static Plugin Instance { get; private set; }
         public override string Author => "valera771 : (Ported From Build & xNexus-ACS & NotIntense)";
         public override string Name => "RainbowTags";
-        public override string Prefix => "RainbowTags";
+        public override string Prefix => "rainbow_tags";
         public override Version Version { get; } = new(2, 0, 0);
         public override Version RequiredExiledVersion { get; } = new(7, 0, 0);
 
